@@ -1,2 +1,3 @@
-# devsearch
-DevSearch Project Exercise
+# DevSearch Project Exercise
+
+Python Django 2021 - Complete Course
