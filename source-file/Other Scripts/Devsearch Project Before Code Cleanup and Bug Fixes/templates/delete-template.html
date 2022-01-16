@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if object.title %}
+                    <p>Are you sure want to delete {{ object.title }} ?</p>
+                    <a href="{{ request.GET.next }}" class="btn btn--sub btn--lg my-md">Go Back</a> <!-- request.GET.next on href is using to create dynamic link into Go Back button -->
+                    <input type="submit" value="Submit" class="btn btn--sub btn--lg my-md">
+                {% elif object.name %}
+                    <p>Are you sure want to delete {{ object.name }} ?</p>
+                    <a href="{{ request.GET.next }}" class="btn btn--sub btn--lg my-md">Go Back</a> <!-- request.GET.next on href is using to create dynamic link into Go Back button -->
+                    <input type="submit" value="Submit" class="btn btn--sub btn--lg my-md">
+                {% endif %}
+
+            </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

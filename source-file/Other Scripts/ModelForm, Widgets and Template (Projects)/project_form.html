@@ -1,0 +1,57 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+<!-- Main Section -->
+<main class="formPage my-xl">
+  <div class="content-box">
+    <div class="formWrapper">
+      <a class="backButton" href="{% url 'projects' %}"
+        ><i class="im im-angle-left"></i
+      ></a>
+      <br>
+
+      <form class="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form__field">
+            <label for="formInput#text">{{ form.title.label_tag }}</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form__field">
+            <label for="formInput#text">{{ form.featured_image.label_tag }}</label>
+            {{ form.featured_image }}
+        </div>
+
+        <div class="form__field">
+            <label for="formInput#text">{{ form.description.label_tag }}</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form__field">
+            <label for="formInput#text">{{ form.demo_link.label_tag }}</label>
+            {{ form.demo_link }}
+        </div>
+
+        <div class="form__field">
+            <label for="formInput#text">{{ form.source_link.label_tag }}</label>
+            {{ form.source_link }}
+        </div>
+
+        <div class="form__field">
+            {{ form.tags.label_tag }}
+            
+              {% for tag in form.tags  %}
+                {{ tag }}
+              {% endfor %}
+        </div>
+        
+        <input
+          class="btn btn--sub btn--lg my-md"
+          type="submit"
+          value="Submit">
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+    <!-- Main Section -->
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+            <a class="backButton" href="{% url 'user-profile' recipient.id %}"><i class="im im-angle-left"></i></a>
+            <br>
+                <form class="form" method="POST">
+                    {% csrf_token %}
+                    
+                    {% if request.user.is_authenticated == False %} <!-- if user is not logged in. all fields (name, email, subject and body) will show up in the message -->
+                        <div class="form__field">  <!-- We're going to output each value individually. -->
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                        </div>
+
+                        <div class="form__field">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    {% endif %}
+
+                    <div class="form__field">  <!-- when user is logged in, only subject and body fields will show up -->
+                        {{ form.subject.label_tag }}
+                        {{ form.subject }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.body.label_tag }}
+                        {{ form.body }}
+                    </div>
+                        
+                    <input
+                    class="btn btn--sub btn--lg my-md"
+                    type="submit"
+                    value="Submit"
+                    >
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

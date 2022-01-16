@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <!-- Main Section -->
+  <main class="formPage my-xl">
+    <div class="content-box">
+      <div class="formWrapper">
+        <a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
+        <br>
+
+        {% if project %}  <!-- dynamic code for project-form title -->
+          <h1>Update Project</h1>
+        {% else %}
+          <h1>Add Project</h1>
+        {% endif %}
+
+        <form class="form" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {% for field in form %}
+            <div class="form__field">
+              <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+              {{ field }}
+            </div>
+          {% endfor %}
+
+          <div class="form__field">
+            {% for tag in project.tags.all %}
+              <div class="tag tag--pill tag--main">{{ tag }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="form__field">
+            <label for="{{ field.id_for_label }}">Tags:</label>
+            <textarea name="newtags" class="input" placeholder="Add tags here..."></textarea>
+          </div>
+
+          <input class="btn btn--sub btn--lg my-md" type="submit" value="Submit">
+        </form>
+
+      </div>
+    </div>
+  </main>
+{% endblock content %}
